@@ -14,5 +14,7 @@ if(!isset($_SESSION['loggedin'] )){
 
 
 
-<h3>Welcome -<?php echo $_SESSION['username']?></h3>
+<h3>Welcome -<?php echo $_SESSION['username']?></h3> <br>
+
+<a href="logout.php"><button>Log Out</button></a>
 

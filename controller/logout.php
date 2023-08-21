@@ -1,7 +1,16 @@
 <?php
-session_start()
+session_start();
 
-if(isset())
+if(isset($_SESSION['loggedin'])){
+    // if session log is set 
+    session_unset();
+    session_destroy();
+    header("location: login.php");
+
+}else{
+    // if session not set
+    header("location: login.php");
+}
 
 
 
