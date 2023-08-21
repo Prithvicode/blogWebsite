@@ -25,20 +25,25 @@
     $username = $_POST['Username'];
     $pass = $_POST['Pass'];
 
-    $query = "select * from user where Username = '$username' and Password ='$pass';";
+    $query = "select * from user where Username = '$username'";
     $result = mysqli_query($conn,$query);
     $num = mysqli_num_rows($result);
     if($num ==1){
         $row = mysqli_fetch_assoc($result);
-        // echo "Hello " .$row['First_name'];
 
-        // Session start
-        session_start();
-        $_SESSION['loggedin'] =true;
-        $_SESSION['username']= $username;
+        // Check hash of pass with hash in db
+        if(password_verify($pass,$row['Password'])){
 
-        header("location:http://localhost/blogWebsite/controller/dashboard.php");
+            // Session start
+            session_start();
+            $_SESSION['loggedin'] =true;
+            $_SESSION['username']= $username;
 
+            header("location:http://localhost/blogWebsite/controller/dashboard.php");
+        }else{
+            // Password don't Match;
+            echo "Password incorrect.";
+        }
 
     }else{
         echo "Invalid User";

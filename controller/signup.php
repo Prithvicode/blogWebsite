@@ -32,6 +32,7 @@
 
 
         <input type="submit" name ="submit"> <br>
+        <p>Already Have an Account? </p>
         <a href="http://localhost/blogWebsite/controller/login.php"><button type ='button'>Log In</button></a>
 
     </form>
@@ -58,12 +59,15 @@ if (isset($_POST['submit'])){
             echo "Username Already exits, Try Again";
 
         }else{
-        // if username is unique:
+        
         // check confirm pass and password match:
             if ($cpass == $pass){
+                // Hashing the password:
+                $hash_pass = password_hash($pass,PASSWORD_DEFAULT);
+
 
                 // Insert into user table.
-                $query = "insert into user(First_name, Last_name, Email,Password,Username) values('$fname','$lname','$email','$pass','$username')";
+                $query = "insert into user(First_name, Last_name, Email,Password,Username) values('$fname','$lname','$email','$hash_pass','$username')";
         
                 $result = mysqli_query($conn,$query );
                 if($result){
@@ -81,15 +85,6 @@ if (isset($_POST['submit'])){
 
         
     }
-
-    // Hashing password
-    // $hash = password_hash()
-
-    //session and cookie
-    
-
-   
-
 
 ?>
 
