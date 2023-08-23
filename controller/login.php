@@ -38,6 +38,7 @@
             session_start();
             $_SESSION['loggedin'] =true;
             $_SESSION['username']= $username;
+            $_SESSION['user_id'] = $row['Id'];
 
             header("location:http://localhost/blogWebsite/controller/dashboard.php");
         }else{
