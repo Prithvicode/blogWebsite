@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../view/style.css">
+    <link rel="stylesheet" href="../view/readPost/style.css">
     <!-- fav-icon -- -- -->
     <link rel="shortcut icon " href="images/fav-icon.svg">
 
@@ -17,6 +17,7 @@
 
 </head>
 <body>
+    
     
 
     <!-- BLog Section -->
@@ -59,10 +60,14 @@
                             echo "<span>" .$row['Published_date']."</span>";
                             echo '<a href="#" class="blog-title">'.$row["Title"].'</a>';
                             echo '<p>'. $row['Post'].'</p>';
-                            echo '<a href="#">Read More</a>';
+                            ?>
+                            
+                            <?php
+                        //    echo '<a href="./dashboard.php" class ="button" target="_blank">Read More'.'</a>';
 
                         echo '</div>';
                     echo '</div>';
+
 
         
             
@@ -71,6 +76,7 @@
             <?php
             }
             ?>
+            <button></button>
         
     </section>
 </body>

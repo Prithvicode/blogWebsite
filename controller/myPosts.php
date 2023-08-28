@@ -125,7 +125,7 @@
                             echo "<span>" .$row['Published_date']."</span>";
                             echo '<a href="#" class="blog-title">'.$row["Title"].'</a>';
                             echo '<p>'. $row['Post'].'</p>';
-                            echo '<a href="#">Read More</a>';
+                            echo '<a href="../view/readPost/read.php?Id='.$row['Id'].'">Read More'.'</a>';
                             echo "<div class ='tools'>";
                             echo '<a href="../model/update.php?Id='.$row['Id'].'"><button type ="button" id="edit">Edit</button></a>';
                             echo '<a href="../model/delete.php?Id='.$row['Id'].'"><button type ="button" id= "delete">Delete</button></a>';
