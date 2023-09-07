@@ -1,11 +1,38 @@
-<?php 
+
+
+<?php
+// session start 
+session_start();
+
+if(isset($_SESSION['views']))
+	$_SESSION['views'] = $_SESSION['views']+1;
+else
+	$_SESSION['views']=1;
+	
+
+
+
 // require navbar
 include '../navbar/nav.html'; 
 ?>
 <style>
 <?php include '../navbar/style.css'; ?>
-
 .blog-container{
+    display:flex;
+    width:100%;
+    flex-direction:;
+    align-items: start;
+    gap:2rem;
+}
+
+.content{
+    float:right;
+    width:600px;
+    
+}
+.blog-image {
+    height: 500px;
+    width:200px;
     
 }
 
@@ -19,8 +46,13 @@ include '../navbar/nav.html';
    const hero = document.querySelector('.hero-box');
     hero.remove();
 
-    
-    
+    //like button
+   var like_value = 0;
+    function like(){
+       like_value = 1;
+        
+    }
+
 </script>
 
 
@@ -29,6 +61,7 @@ include '../navbar/nav.html';
 include '../../controller/dbconnect.php';
 $id = $_GET['Id'];
 $sql = "select * from blog_post where Id =".$id;
+
 $result = mysqli_query($conn, $sql);
 
 $nums = mysqli_num_rows($result);
@@ -37,32 +70,68 @@ if($nums> 0){
     
 }
 
-
 // nav for save and submit (sticky)
 
 ?>
-//blog title
 
 <div class="blog-container">
+  
+    <div class="content">
 
-    <div class="blog-image">
-       <?php  echo '<h1>' .$row['Title'].'</h1>'; ?>
+        <h1><?php echo $row['Title']?></h1>
+       
 
+         <span><?php echo $row['Published_date']?></span>
+         <br><br>
+       
+           <?php 
+            
+            echo nl2br($row["Post"]);
+            ?>
+            <br>
+            <br>
+           <form action="" method ="POST">
+           <button type ='submit' name ='like'>Like</button>
+           </form>
+           
+        
     </div>
-    <div class="blog-title">
-
-    </div>
-    <div class="blog-post">
-
-    </div>
+    
+    <?php if($row['Image'] !='../uploads/' ){?>
+        <div class="blog-image">
+        <img src="../<?php echo $row['Image']?>" height = '200px' width='250px' alt="">
+        </div><?php
+    }
+    ?>
 </div>
-//blog post
 
 
 
 
 
 <?php
+if (isset($_POST['like'])) {
+
+        $like = 1;
+        $likes = $like + $row['Likes'];
+        $sql = "update blog_post set Likes ='".$likes."' where id=".$id;
+        $result = mysqli_query($conn,$sql);
+        if(!$result){
+        echo "insertion failed.";
+        }
+}
+$db_views = $row['Views'];
+
+$views = $_SESSION['views'] + $db_views;
+
+$sql = "update blog_post set Views ='".$views."'  where id=".$id;
+$result = mysqli_query($conn,$sql);
+if(!$result){
+   echo "insertion failed.";
+}
+unset($_SESSION['views']);
+session_destroy();
+
 //require footer
 
 

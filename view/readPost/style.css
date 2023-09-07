@@ -67,11 +67,9 @@ border-bottom: 1px solid rgba(0,0,0,0.05);
 
 }
 .blog-img img{
-    width:100%;
+    width:200;
     height:323px;
     /* height:100%; */
-    object-fit:cover;
-    object-position: center;
 }
 
 .blog-text{

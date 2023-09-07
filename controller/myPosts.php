@@ -1,5 +1,9 @@
 
+<?php
+session_start();
+$user_id = $_SESSION['user_id'];
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,11 +82,23 @@
     #delete:hover{
         background-color:#f44336;
     }
+    .blog-text{
+        overflow:hidden;
+    }
+    <?php require '../view/navbar/style.css'?>
 </style>
+<script>
+    <?php include '../view/navbar/nav.js'; ?>
+    // static navbar
+    const nav =document.querySelector('.header');
+    nav.style.position ='static';
+  
+
+</script> 
 
 </head>
 <body>
-    
+    <?php require "../view/navbar/nav.html";?>
 
     <!-- BLog Section -->
 
@@ -90,17 +106,15 @@
 
         <!-- heading -->
         <div class="blog-heading">
-            <span>My recent Posts</span>
+            
             <h3>My Blogs</h3>
         </div>
 
         <!--========== PHP to select blogs from database=====================================-->
         <?php
         include 'dbconnect.php';
-        session_start();
         
-        $user_id = $_SESSION['user_id'];
-
+        
         $sql = "select * from blog_post where Author_id = $user_id";
         
         $result = mysqli_query($conn, $sql);
@@ -123,7 +137,7 @@
 
                         echo '<div class="blog-text">';
                             echo "<span>" .$row['Published_date']."</span>";
-                            echo '<a href="#" class="blog-title">'.$row["Title"].'</a>';
+                            echo '<a href="http://localhost/blogWebsite/view/readPost/read.php?Id="'.$row['Id'].' class="blog-title">'.$row["Title"].'</a>';
                             echo '<p>'. $row['Post'].'</p>';
                             echo '<a href="../view/readPost/read.php?Id='.$row['Id'].'">Read More'.'</a>';
                             echo "<div class ='tools'>";

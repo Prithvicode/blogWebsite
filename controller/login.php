@@ -19,7 +19,9 @@
     </form>
 
     <?php
-    include 'dbconnect.php';
+     include 'dbconnect.php';
+   
+
     // Check User
     if(isset($_POST['submit'])){
     $username = $_POST['Username'];
@@ -35,7 +37,10 @@
         if(password_verify($pass,$row['Password'])){
 
             // Session start
+            // sessin global variables set.
             session_start();
+        
+            
             $_SESSION['loggedin'] =true;
             $_SESSION['username']= $username;
             $_SESSION['user_id'] = $row['Id'];
