@@ -72,6 +72,17 @@
             font-weight:500;
             color:darkgray;
         }
+        .blog-pic img{
+            height:250px;
+            width:300px;
+            object-fit:cover;
+            overflow:hidden;
+            transition: .3s ;
+        }
+        .blog-pic img:hover{
+           height: 300px;
+           width: 350px;
+        }
     </style>
 </head>
 
@@ -80,9 +91,14 @@
 <?php
 include "../controller/dbconnect.php";
 
+if(isset($_SESSION['user_id'])){
+    $sql = "SELECT * FROM `blog_post`order by Id Desc limit 8;";
+}
+else{
+    $sql = "SELECT * FROM `blog_post`order by Id Desc limit 4;";
+}
 
 
-$sql = "SELECT * FROM `blog_post`order by Published_date Desc limit 4;";
 $result = mysqli_query($conn, $sql );
 $nums = mysqli_num_rows($result);
 
@@ -94,7 +110,7 @@ if($nums>0){
             <div class="blog-pic">
 
            
-            <img src="<?php echo $row['Image'];?>" alt="" height=250px width=300px>
+           <a href=<?php echo"http://localhost/blogWebsite/view/readPost/read.php?Id=".$row['Id']?>> <img src="<?php echo $row['Image'];?>" alt="" height=250px width=300px></a>
             </div>
             <div class="blog-text">
                 <span><?php echo $row['Blog_category'];?></span>

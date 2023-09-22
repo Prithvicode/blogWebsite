@@ -1,5 +1,4 @@
 
-
 <?php
 // session start 
 session_start();
@@ -13,38 +12,86 @@ else
 
 
 // require navbar
-include '../navbar/nav.html'; 
+if(isset( $_SESSION['user_id'])){
+    include '../navbar/logNav.php'; 
+}
+else{
+    include '../navbar/nav.html'; 
+}
+
 ?>
 <style>
 <?php include '../navbar/style.css'; ?>
-.blog-container{
-    display:flex;
-    width:100%;
-    flex-direction:;
-    align-items: start;
-    gap:2rem;
-}
 
+h1{
+    font-size:40px;
+    font-weight:600;
+
+}
+.blog-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:1rem;
+}
 .content{
-    float:right;
-    width:600px;
-    
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1rem;
+    width:700px;
+    flex-wrap :wrap;
 }
 .blog-image {
-    height: 500px;
-    width:200px;
+    height: 400px;
+    width:500px;
+    border:1px solid black;
+    overflow:hidden;
+}
+
+.blog-image img{
+    width:500px;
+    height:400px;
+    object-fit:cover;
     
 }
+.like-button {
+            background-color: #3498db; /* Button background color */
+            color: #fff; /* Text color */
+            border: none; /* Remove the button border */
+            padding: 10px 20px; /* Padding inside the button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Change cursor to a pointer on hover */
+        }
+
+        /* Style for the like button when hovered */
+.like-button:hover {
+            background-color: #2980b9; /* Change background color on hover */
+        }
+
+        .liked{
+            display:none;
+        }
+    
+        .article{
+         
+            font-weight: 400;
+        }
+        
 
 </style>
 <script>
-    <?php include '../navbar/nav.js'; ?>
+    <?php 
+   
+    include '../navbar/nav.js'; 
+    ?>
     // static navbar
-    const nav =document.querySelector('.header');
-    nav.style.position ='static';
+    // const nav =document.querySelector('.header');
+    // nav.style.position ='static';
     //hide hero section
-   const hero = document.querySelector('.hero-box');
-    hero.remove();
+//    const hero = document.querySelector('.hero-box');
+//     hero.remove();
 
     //like button
    var like_value = 0;
@@ -52,6 +99,8 @@ include '../navbar/nav.html';
        like_value = 1;
         
     }
+
+   
 
 </script>
 
@@ -70,42 +119,61 @@ if($nums> 0){
     
 }
 
+//author info
+$sql2 = "select * from user where Id =".$row['Author_id'];
+
+$result2 = mysqli_query($conn, $sql2);
+
+$nums = mysqli_num_rows($result2);
+if($nums> 0){
+    $auth = mysqli_fetch_assoc($result2);
+    
+}
 // nav for save and submit (sticky)
 
 ?>
 
 <div class="blog-container">
+    <div class="author">
+       
+    </div>
   
     <div class="content">
 
         <h1><?php echo $row['Title']?></h1>
-       
-
+        <hr>  
          <span><?php echo $row['Published_date']?></span>
-         <br><br>
+         <span>Published by: <?php echo $auth['First_name']."  ". $auth['Last_name']?></span>
+         <hr>
+         
        
+         <!-- Blog image -->
+         <?php if($row['Image'] !='../uploads/' ){?>
+            <div class="blog-image">
+            <img src="../<?php echo $row['Image']?>" alt="">
+            </div><?php
+        }
+        ?>
+            <!-- BLog post -->
+            <p class='article'>
            <?php 
-            
             echo nl2br($row["Post"]);
             ?>
+            </p>
             <br>
             <br>
            <form action="" method ="POST">
-           <button type ='submit' name ='like'>Like</button>
+           <button type ='submit' name ='like' class='like-button' >Like</button> <p class="liked">You liked this.</p>
            </form>
            
         
     </div>
+    <script>
+
+</script>
     
-    <?php if($row['Image'] !='../uploads/' ){?>
-        <div class="blog-image">
-        <img src="../<?php echo $row['Image']?>" height = '200px' width='250px' alt="">
-        </div><?php
-    }
-    ?>
+    
 </div>
-
-
 
 
 
@@ -118,7 +186,14 @@ if (isset($_POST['like'])) {
         $result = mysqli_query($conn,$sql);
         if(!$result){
         echo "insertion failed.";
-        }
+        }else{?>
+            <style>
+            .liked{
+                display:inline;
+            }
+            </style>
+     <?php   }
+        
 }
 $db_views = $row['Views'];
 
@@ -130,7 +205,7 @@ if(!$result){
    echo "insertion failed.";
 }
 unset($_SESSION['views']);
-session_destroy();
+
 
 //require footer
 

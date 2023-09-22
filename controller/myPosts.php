@@ -1,9 +1,16 @@
 
+
+<!-- $user_id = $_SESSION['user_id']; -->
 <?php
 session_start();
-$user_id = $_SESSION['user_id'];
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}else{
+    echo"no session id";
+}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +35,7 @@ $user_id = $_SESSION['user_id'];
     }
     .blog-box{
         display:flex;
-        width:70%;
+        width:800px;
         height:300px;
         padding:0 1rem;
         flex-direction:row-reverse;
@@ -85,6 +92,7 @@ $user_id = $_SESSION['user_id'];
     .blog-text{
         overflow:hidden;
     }
+  
     <?php require '../view/navbar/style.css'?>
 </style>
 <script>
@@ -98,7 +106,7 @@ $user_id = $_SESSION['user_id'];
 
 </head>
 <body>
-    <?php require "../view/navbar/nav.html";?>
+    <?php require "../view/navbar/logNav.php";?>
 
     <!-- BLog Section -->
 
@@ -113,9 +121,8 @@ $user_id = $_SESSION['user_id'];
         <!--========== PHP to select blogs from database=====================================-->
         <?php
         include 'dbconnect.php';
-        
-        
-        $sql = "select * from blog_post where Author_id = $user_id";
+     
+        $sql = "select * from blog_post where Author_id =".$user_id;
         
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
@@ -123,8 +130,6 @@ $user_id = $_SESSION['user_id'];
         if($num >0 ){
 
         echo "<div class='blog-container'>";
-
-            
             
                 while($row =mysqli_fetch_assoc($result))
                 {
@@ -137,7 +142,7 @@ $user_id = $_SESSION['user_id'];
 
                         echo '<div class="blog-text">';
                             echo "<span>" .$row['Published_date']."</span>";
-                            echo '<a href="http://localhost/blogWebsite/view/readPost/read.php?Id="'.$row['Id'].' class="blog-title">'.$row["Title"].'</a>';
+                            echo '<a href="http://localhost/blogWebsite/view/readPost/read.php?Id='.$row['Id'].'" class="blog-title">'.$row["Title"].'</a>';
                             echo '<p>'. $row['Post'].'</p>';
                             echo '<a href="../view/readPost/read.php?Id='.$row['Id'].'">Read More'.'</a>';
                             echo "<div class ='tools'>";

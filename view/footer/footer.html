@@ -1,0 +1,97 @@
+
+<head>
+    <style>
+        /* Footer styles */
+        footer {
+            
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            margin-top:2rem;
+        }
+        /* Social media links */
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            display:flex;
+            flex-direction: column;
+        }
+       
+        .social-icons li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Blog categories */
+        .blog-categories {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .blog-categories a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .blog-categories a:hover{
+            color:silver;
+            text-decoration: underline;
+        }
+
+        /* Copyright */
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .big-container{
+            display:flex;
+            justify-content: space-around;
+            align-items: baseline;
+
+
+        }
+    </style>
+</head>
+
+    <!-- Footer -->
+    <footer id = "about">
+        <div class="big-container">
+            <div class="container">
+                <h3>Follow us:</h3>
+                <ul class="social-icons">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <!-- Add more social media icons as needed -->
+                </ul>
+           </div>
+
+                <div class="blog-categories">
+                    <h3>Categories:</h3>
+                    <a href="http://localhost/blogWebsite/controller/viewCategory.php?Category=Education"> Education</a>|
+                    <a href="http://localhost/blogWebsite/controller/viewCategory.php?Category=Sports">Sports</a>|
+                    <a href="http://localhost/blogWebsite/controller/viewCategory.php?Category=Music">Music</a>|
+                    <a href="http://localhost/blogWebsite/controller/viewCategory.php?Category=Personal Development">Personal Development</a>
+                    <!-- Add more blog categories as needed -->
+                </div>
+                <div class="about-us">
+                    <h3>About us:</h3>
+                    <p><i>We help you to create blogs and share them.</i></p>
+                </div>
+        </div>
+
+            <div class="copyright">
+                &copy; 2023 BlogSpace. All rights reserved.
+            </div>
+       
+    </footer>
+
+

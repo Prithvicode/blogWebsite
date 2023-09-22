@@ -2,46 +2,122 @@
    margin:0;
    padding:0;
    box-sizing: border-box;
-
+  
 }
-
-form{
-
-    width:100%;
-    height:100vh;
-    background-color: whitesmoke;
+.container{
+    width: 100vw;
     display: flex;
-    flex-direction: row-reverse;
-   padding:20px;
-    justify-content:center;
-    gap:2rem;
-}
-.view{
-    width:100px;
-    display: flex;
-    flex-direction: column;
-    gap:1rem;
-}
-.blog-content, .blog-title{
-
-    width:600px;
-}
-.blog-title {
-    height:50px;
-}
-.image{
-   
-    width:200px;
-    height: 250px ;
-    display: flex;
-    padding: 0 0 0 10px;
     justify-content: center;
     align-items: center;
-    background-color: lightsteelblue;
+    padding:1rem;
 }
-textarea{
-    width: 600px;
+form{
+    
+    width:700px;
+    height:100vh;
+    
+    /* display: flex;
+    flex-direction: column; */
+    
+    gap:2rem;
+}
+.image{
+    display: flex;
+    border:1px solid black;
     height:400px;
+    width:500px;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center ;
+
+}
+.image img{
+    height:20px;
+    width:500px;
+    object-fit: fit;
 }
 
 
+
+.title,
+.article{
+    
+    width: 100%;
+    min-height: 100px;
+    height: auto;
+    outline: none;
+    font-size: 40px;
+    font-weight: 600;
+    color: #2d2d2d;
+    resize: none;
+    border: none;
+    padding: 15px;
+    
+}
+.article{
+    height: 600px;
+    font-size: 20px;
+    margin-top: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    padding-bottom: 100px;
+    white-space: pre-wrap;
+}
+
+.title:focus,.article:focus{
+    border:3px solid #0099cc;
+
+}
+
+select {
+    width: 200px; /* Set the width of the select box */
+    padding: 10px; /* Add padding to the select box */
+    font-size: 16px; /* Set the font size */
+    border: 2px solid #ccc; /* Border style, width, and color */
+    border-radius: 5px; /* Rounded corners for the select box */
+    background-color: #fff; /* Background color */
+    color: #333; /* Text color */
+    margin-bottom:1rem;
+}
+
+/* Style for when the select box is hovered */
+select:hover {
+    border-color: #666; 
+}
+
+/* Style for when the select box is focused */
+select:focus {
+    outline: none; /* Remove the default outline */
+    border-color: #0099cc; /* Change border color when focused */
+}
+
+.publish{
+
+    width:150px;
+    padding:10px;
+    font-size:17px;
+    border:none;
+    background-color: #1353df;
+    color:white;
+    border-radius: 12px;
+}
+
+.publish:hover {
+   background-color: #5377c5; 
+}
+
+/* .blog-image {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+} */
+
+/* Style the label on hover to give visual feedback */
+/* .blog-image:hover {
+    background-color:#5377c5;
+} */

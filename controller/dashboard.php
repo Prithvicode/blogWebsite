@@ -3,6 +3,7 @@
     <style>
         body{
             position:relative;
+            padding:2rem;
         }
     </style>
 </head>
@@ -20,7 +21,7 @@
         
     }else{
         //navbar 
-        require '../view/navbar/logNav.html';
+        require '../view/navbar/logNav.php';
     }
          
         
@@ -36,6 +37,12 @@
         /* nabar Css */
         <?php include '../view/navbar/style.css'; ?>
     </style> 
+
+
+    <?php
+    // footer
+    include '../view/footer/footer.html';
+    ?>
     <script>
         // navbar Js
         <?php include '../view/navbar/nav.js'; ?>
@@ -43,9 +50,6 @@
 
 
 
-
-<a href="blog.php"><button type ='button'>Write Blog</button></a><br>
-<a href="logout.php"><button>Log Out</button></a>
 
 </body>
 

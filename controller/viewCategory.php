@@ -1,3 +1,23 @@
+<?php 
+session_start();
+$category = $_GET['Category'];
+?>
+<html>
+<body>
+    
+<?php
+    // require navbar
+    if(isset( $_SESSION['user_id'])){
+        include '../view/navbar/logNav.php'; 
+    }
+    else{
+        include '../view/navbar/nav.html'; 
+    }
+
+ ?>
+    <style>
+    <?php include '../view/navbar/style.css'; ?>
+    </style>
 
 <head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -101,16 +121,16 @@
     </style>
 </head>
 
-<h2 align ='center'>Popular Posts</h2>
+<h2 align ='center'>Category: <?php echo $category?> </h2>
 <br><br>
 <?php
 include "../controller/dbconnect.php";
 
 
 if(isset($_SESSION['user_id'])){
-    $sql = "SELECT * FROM `blog_post`order by Views  Desc limit 8;";
+    $sql = "SELECT * FROM `blog_post` where Blog_category ='".$category."'order by Views  Desc limit 8;";
 }else{
-    $sql = "SELECT * FROM `blog_post`order by Views  Desc limit 4;";
+    $sql = "SELECT * FROM `blog_post` where Blog_category ='".$category."'order by Views  Desc limit 4;";
 }
 
 $result = mysqli_query($conn, $sql );
@@ -148,6 +168,9 @@ if($nums>0){
     echo "<br>";
 }
 
+
+
+include "../view/footer/footer.html";
 ?>
 
 
@@ -158,10 +181,5 @@ if($nums>0){
 
 
 
-
-
-
-
-
-
-
+</body>
+</html>

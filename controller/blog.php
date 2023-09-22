@@ -4,10 +4,10 @@
 session_start();
 //checks session logged in or not
 
-if(!isset($_SESSION['loggedin'] )){
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true ){
     //if session NOT set.
     header("location:http://localhost/blogWebsite/controller/login.php");
-    echo $_SESSION['loggedin'];
+    
     
 }
 
@@ -19,12 +19,12 @@ if(!isset($_SESSION['loggedin'] )){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Write Blog</title>
     <link rel="stylesheet" href="../view/writePost/style.css">
     <?php 
     
 // require navbar
-include '../view/navbar/nav.html'; 
+include '../view/navbar/logNav.php'; 
 ?>
 <style>
 <?php include '../view/navbar/style.css'; ?>
@@ -32,47 +32,37 @@ include '../view/navbar/nav.html';
 </style> 
 
 <script>
-    <?php include '../view/navbar/nav.js'; ?>
+   
     // static navbar
     const nav =document.querySelector('.header');
     nav.style.position ='static';
 
+   
 </script> 
+
 </head>
 <body>
+    <div class="container">
                 <form action="" method = "POST" enctype = 'multipart/form-data'>
-                    <div class="image">
-                    <input type="file" name ='image' class ='blog-image'>
-                    </div>
-
-                    <div class="blog-content">
-                        <div class="title">
-                            <input type="text" name ="Title" placeholder= "enter blog title" class = "blog-title"><br>
-                        </div>
-                        <select name="blog_category" id="">
-                        <option value="Education"> Education</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Music">Music</option>
-                        <option value="Personal Development">Personal Development</option>
-
-                    </select><br>
-                    
-                        <div class="post">
-                            <textarea placeholder= 'Start writing here' name="blog" id="" cols="30" rows="10" placeholder="enter you blog...">
-                            </textarea>
-                        </div>
-                   
-
-                    
+                
+                <textarea type="text" class="title" placeholder="Blog title..." name ='Title' required></textarea> <br>
+                        <div class="image">
+                            <input type="file" name ='image' class ='blog-image'>
+                         </div><br><br>
+                        
+                         <textarea type="text" class="article" placeholder="Start writing here..." name ='blog' required></textarea>
            
-                    
-                    <input type="submit" name ="submit"><br>
-                    </div>
+                        <select name="blog_category" id="">
+                            <option value="Education"> Education</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Music">Music</option>
+                            <option value="Personal Development">Personal Development</option>
 
-                <div class="view">
-                    <a href="viewPost.php" target ="_blank"> <button type ='button'style ="padding: 20px"> Display Posts </button></a>
-                    <a href="myPosts.php" target ="_blank"> <button type ='button'style ="padding: 20px"> Display My Posts </button></a>
-                </div>
+                        </select><br>
+                    <input type="submit" value = "Publish" name ="submit" class = 'publish'><br><br><br>
+                  
+    </div>
+
                 
                 
                 
@@ -102,17 +92,34 @@ include '../view/navbar/nav.html';
         $result = mysqli_query($conn, $sql);
 
         if($result){
-            echo "inserted blog success";
+            echo "<script>"."alert('Published successfully')"."</script>";
         }
         else{
             echo 'insert failed';
         }
 
-        // header("location:http://localhost/blogWebsite/dashboard.php");
 
        
         
     }
     ?>
+
+<script>
+        const image_input = document.querySelector(".blog-image");
+
+        var uploaded_image = "";
+
+        image_input.addEventListener("change",function(){
+           
+            const reader = new FileReader();
+            reader.addEventListener("load",()=>{
+                uploaded_image = reader.result;
+                document.querySelector(".image").style.backgroundImage = `url(${uploaded_image})`
+                
+            });
+            reader.readAsDataURL(this.files[0]);
+        })
+
+</script>
 </body>
 </html>

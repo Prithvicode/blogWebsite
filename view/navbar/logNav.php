@@ -7,6 +7,8 @@
     log out button when user log's in
     
  -->
+
+ 
  <head>
     <link rel="stylesheet" href="./style.css">
      
@@ -16,12 +18,15 @@
      
              
              <nav  class ='navbar' >
-                 <span class="logo">LOGO</span>
+                 <span class="logo"> BlogSpace </span>
                  <ul class ='menu'>
                      <li><a href="http://localhost/blogWebsite/controller/dashboard.php" class ='ax'>Home</a></li>
-                     <li><a class ='ax' href="">About</a></li>
-                     <li><a class ='ax' href="http://localhost/blogWebsite/controller/logout.php" >Logout</a></li>
+                     
                      <li><a class ='ax' href="http://localhost/blogWebsite/controller/blog.php">Write</a></li>
+                     
+                     <li ><a class ='ax' href="http://localhost/blogWebsite/controller/myPosts.php"><pre>My Posts</pre></a></li>
+                     <li><a class ='ax' href="http://localhost/blogWebsite/controller/logout.php" >Logout</a></li>
+                     
                  </ul>
              <!-- <a href="" class = 'get-started'><button type ='button'>Get started</button></a>  -->
              </nav>

@@ -1,11 +1,29 @@
+
+<?php
+session_start();
+include "../controller/dbconnect.php";
+
+
+$Id = $_GET['Id'];
+$sql = "Select * from blog_post where Id ='$Id'";
+
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($result);
+
+if($_SESSION['user_id'] != $row['Author_id']){
+    echo "<script>"."alert('Access Denied. Go Back.')"."</script>";
+    
+}else{
+?>
+
 <html>
     <head>
+        <title>Update Blog</title>
     <link rel="stylesheet" href="../view/writePost/style.css">
     </head>
-<body>
-            <?php 
+     <?php 
             // require navbar
-            include '../view/navbar/nav.html'; 
+            include '../view/navbar/logNav.php'; 
             ?>
             <style>
             <?php include '../view/navbar/style.css'; ?>
@@ -20,53 +38,36 @@
             hero.remove();
 
         </script>
+    </head>
+ <body>
+       
 <!-- FORM WITH PRE FILLED DATA FROM DB -->
-<?php
-include "../controller/dbconnect.php";
 
-
-$Id = $_GET['Id'];
-$sql = "Select * from blog_post where Id ='$Id'";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
 
 ?>
-<form action="" method = "POST" enctype = 'multipart/form-data'>
 
-    <!-- image prefilled data click change to then only update  -->
+<div class="container">
+                <form action="" method = "POST" enctype = 'multipart/form-data'>
+                
+                <textarea type="text" class="title" name ='Title'><?php echo $row['Title']?></textarea> <br>
+                        <div class="image" style="background-image:url(' <?php echo $row['Image']; ?> ');">
+                            <input type="file" name ='image' class ='blog-image' value =" <?php echo $row['Image'];?> ">
+                         </div><br><br>
+                        
+                         <textarea type="text" class="article"  name ='blog'> <?php echo $row['Post']?> </textarea>
+           
+                        <select name="blog_category" id="">
+                            <option value="Education"> Education</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Music">Music</option>
+                            <option value="Personal Development">Personal Development</option>
 
-    <div class="image">
-        
-        <input type="file" name ='image'><br>
+                        </select><br>
+                    <input type="submit" value = "Update" name ="submit" class = 'publish'> <br><br><br>
+                    <?php  
+
+?>
     </div>
-
-    <div class="blog-content">
-            <input type="text" name ="Title" placeholder= "enter blog title"value ="<?php echo $row['Title']?>"><br>
-            <!-- default blog_category can be change w -->
-            <select name="blog_category" id="blog_cat">
-
-                <option value="Education"> Education</option>
-                <option value="Sports">Sports</option>
-                <option value="Music">Music</option>
-                <option value="Personal Development">Personal Development</option>
-
-            </select><br>
-
-            <textarea name="blog" id="" cols="30" rows="10" placeholder="enter you blog..." >
-            <?php echo $row['Post']?>
-            </textarea><br>
-            
-            
-            <input type="submit" name ="submit"><br>
-            </div>
-    <div class="view">
-    <a href="viewPost.php" target ="_blank"> <button type ='button'style ="padding: 20px"> Display Posts </button></a>
-    <a href="http://localhost/blogWebsite/controller/myPosts.php" target ="_blank"> <button type ='button'style ="padding: 20px"> Display My Posts </button></a>
-    
-   </div>
-    
-</form>
-   
     <?php
     include '../controller/dbconnect.php';
    
@@ -93,20 +94,47 @@ $row = mysqli_fetch_assoc($result);
         $sql = "update blog_post set Title = '".$title."' ,Post ='".$blog_post."', Blog_category = '".$blog_cat."' where Id = $blog_id ;";
         }
             $result = mysqli_query($conn, $sql);
-
-            if($result){
-                echo "Updated blog success";
-            }
-            else{
+            
+            if(!$result){
                 echo 'Update failed';
+            }else{?>
+            <script>
+            alert("updated successfully");
+            </script>
+            <?php
             }
+           
+        
+            
        
 
-        // header("location:http://localhost/blogWebsite/dashboard.php");
+        
 
        
         
     }
     ?>
+
+<script>
+        const image_input = document.querySelector(".blog-image");
+
+        var uploaded_image = "";
+
+        image_input.addEventListener("change",function(){
+           
+            const reader = new FileReader();
+            reader.addEventListener("load",()=>{
+                uploaded_image = reader.result;
+                document.querySelector(".image").style.backgroundImage = `url(${uploaded_image})`
+                
+            });
+            reader.readAsDataURL(this.files[0]);
+        })
+
+</script>
+
 </body>
 </html>
+<?php
+}
+?>

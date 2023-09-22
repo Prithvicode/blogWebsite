@@ -7,6 +7,7 @@
           padding:0;
           box-sizing: border-box;
           font-family: 'Poppins', sans-serif;
+         
       }
       
       /* .container{
@@ -15,6 +16,10 @@
              
           } */
         
+          .logo{
+            font-size:larger;
+          
+          }
 
       .navbar{
 
@@ -38,11 +43,13 @@
           gap:3rem;
           height:100%;
           
+          
       }
       .menu li{
           flex:1;
           list-style: none;
           height:100%;
+         
          
       }
       li a{
