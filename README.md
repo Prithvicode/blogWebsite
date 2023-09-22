@@ -53,29 +53,31 @@ Database: MySQL
 
 **Login/Signup:**
 
-
-![login](https://github.com/Prithvicode/blogWebsite/assets/121741194/d6bfe4cb-1027-45db-b5d1-910fe5918bab) 
-![signup](https://github.com/Prithvicode/blogWebsite/assets/121741194/1fe2b274-897e-44ce-b823-0e4682bbbc00)
+![login](https://github.com/Prithvicode/blogWebsite/assets/121741194/c672124b-03bd-4a2b-90bd-9bec1e53a1ea)
+ 
+![signup](https://github.com/Prithvicode/blogWebsite/assets/121741194/05a0fe9f-9435-4431-baf6-0a901052b048)
 
 **Landing Page**:
 
-![d1](https://github.com/Prithvicode/blogWebsite/assets/121741194/96f213aa-0760-4c0d-99d1-0ee2dbdd61ad)
+![d1](https://github.com/Prithvicode/blogWebsite/assets/121741194/e2e9b9dc-ac6e-41b0-baf1-5c46f3fb2d58)
+
 
 **Popular/Recent Posts:**
 
-![d2](https://github.com/Prithvicode/blogWebsite/assets/121741194/7d9eacea-be7c-4c94-a471-2ed0cf5c864c)
+![d2](https://github.com/Prithvicode/blogWebsite/assets/121741194/95fc58df-272f-4689-b7e0-338fdaf95a4f)
 
 **Footer:**
-![d3](https://github.com/Prithvicode/blogWebsite/assets/121741194/a72116c0-36d8-4385-b32d-771744a21a86)
+![d3](https://github.com/Prithvicode/blogWebsite/assets/121741194/7af0b0a6-1112-4903-a530-e050c1850672)
 
 **Blog Editor:**
 
-![write](https://github.com/Prithvicode/blogWebsite/assets/121741194/6c7502e7-e5ba-4e10-aab1-688d08885ca9)
+![write](https://github.com/Prithvicode/blogWebsite/assets/121741194/dc3abe4b-9690-4084-8853-66fb9db9e4e8)
 
 **My Blogs:**
 
-![myblog](https://github.com/Prithvicode/blogWebsite/assets/121741194/31660a8b-acae-40fb-8aae-c390c45275e6)
+![myblog](https://github.com/Prithvicode/blogWebsite/assets/121741194/cc54279e-74cf-49bb-bf97-cb922ac9028a)
 
 **Read Blog:**
 
-![REad](https://github.com/Prithvicode/blogWebsite/assets/121741194/11427297-2d90-476d-98b9-84911836065f)
+
+![REad](https://github.com/Prithvicode/blogWebsite/assets/121741194/b52149eb-e86c-4dd7-b82e-82a5ad5708ad)
